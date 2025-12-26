@@ -62,15 +62,21 @@ img {
 }
 
 /* Prevent text overlap */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
-p, li {
+p,
+li {
   word-wrap: break-word;
   overflow-wrap: break-word;
-  hyphens: auto;
+  hyphens: none;
 }
 
 span {
@@ -109,5 +115,3 @@ span {
 .cli-font {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
-
-

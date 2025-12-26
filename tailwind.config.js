@@ -13,7 +13,10 @@ module.exports = {
                     green: '#00ff9d',
                     cyan: '#00e5ff',
                     dark: '#050505',
-                }
+                },
+            },
+            fontFamily: {
+                mono: ['var(--font-geist-mono)', 'monospace'],
             },
         },
     },

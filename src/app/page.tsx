@@ -2,15 +2,16 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, LayoutGroup, motion, useScroll, useTransform } from 'framer-motion';
-import { Github, Mail, ArrowRight, Award, BookOpen, Briefcase, Building2, Code2, Cpu, GraduationCap, Network, RotateCcw, ShieldCheck, School, Wrench, X, CheckCircle2, XCircle, ChevronDown, Smartphone, Monitor } from 'lucide-react';
+import { Github, Mail, ArrowRight, Award, BookOpen, Briefcase, Building2, Code2, Cpu, GraduationCap, Network, RotateCcw, ShieldCheck, School, Wrench, X, CheckCircle2, XCircle, ChevronDown, Smartphone, Monitor, FileDown } from 'lucide-react';
 import Image from 'next/image';
 import TurnstileWidget from './TurnstileWidget';
+import { Tooltip } from '@/components/Tooltip';
 
 type TTT = 'X' | 'O' | null;
 
 // Bump this when you replace images in `public/assets/images/*` and want the site
 // to fetch the new bytes immediately (avoids Next/Image + browser caching).
-const ASSET_REV = '1';
+const ASSET_REV = '3';
 
 function LinkedInMark({ size = 18 }: { size?: number }) {
   return (
@@ -596,7 +597,7 @@ export default function Home() {
         examples: [
           { title: 'Production Network Traffic and Client Visibility', description: 'This view represents a live production environment with sustained traffic volumes and a diverse client base across wired and wireless infrastructure. I manage end-to-end visibility into client behavior, bandwidth consumption, and application usage to ensure predictable performance and capacity planning. This network supports continuous utilization under load while maintaining stability, segmentation, and policy enforcement across devices and tenants.', imageSrc: `/assets/images/ni-p1.png?v=${ASSET_REV}` },
           { title: 'Enterprise Wireless Network Health and Optimization', description: 'This snapshot shows real-time wireless health metrics from a production enterprise WiFi deployment. I designed, deployed, and actively tune this environment to deliver fast client association, seamless roaming, strong signal quality, and low latency at scale. Ongoing monitoring and optimization ensure reliability for high-density usage while maintaining security, performance baselines, and operational headroom.', imageSrc: `/assets/images/ni-p2.png?v=${ASSET_REV}` },
-          { title: 'Enterprise WiFi Network Design & Optimization', description: 'Designed and optimized enterprise-grade wireless networks for high-density environments. Conducted site surveys, configured AP placement, implemented advanced security policies, and optimized performance for seamless connectivity across multiple floors and buildings.', imageSrc: `/assets/images/ni-p3.png?v=${ASSET_REV}` },
+          { title: 'Centralized Management of Large Scale Production Networks', description: 'This snapshot represents a subset of the production networks I actively manage and operate. From a centralized control plane, I oversee dozens of live environments supporting thousands of client connections, with consistent uptime, traffic flow, and policy enforcement. This view highlights standardized network architecture, continuous monitoring, and the ability to scale operations without sacrificing stability or visibility.', imageSrc: `/assets/images/ni-p3.png?v=${ASSET_REV}` },
         ],
       },
       {
@@ -604,9 +605,9 @@ export default function Home() {
         category: 'WEB',
         description: 'Modern web applications built with React, Next.js, and TypeScript',
         examples: [
-          { title: 'Portfolio Website', description: 'Built responsive portfolio site with custom animations and interactive components', imageSrc: '/assets/work/placeholder.svg' },
-          { title: 'Client Dashboard', description: 'Developed internal dashboard for MSP client management and ticket tracking', imageSrc: '/assets/work/placeholder.svg' },
-          { title: 'Network Monitoring UI', description: 'Created real-time network monitoring interface with live status updates', imageSrc: '/assets/work/placeholder.svg' },
+          { title: 'Enterprise Consolidated Billing Platform', description: 'An in-progress enterprise billing platform designed to centralize vendor spend, invoices, and financial visibility across multiple services. The system includes real-time dashboards, spend analysis, and an AI-assisted advisor layer to surface cost anomalies, optimization opportunities, and usage trends. Built with scalability and extensibility in mind, this project focuses on turning fragmented billing data into actionable operational insight.', imageSrc: `/assets/images/wd-p1.jpg?v=${ASSET_REV}` },
+          { title: 'B2B Partner Portal and Referral Platform', description: 'A live, production B2B web application built to support business partnerships at scale. The platform includes an analytics dashboard, referral lifecycle management, integrated support workflows, internal communication tools, role-based access control, and administrative oversight. Designed and implemented as a full end-to-end system, this application supports real users, real workflows, and ongoing operational use in production.', imageSrc: `/assets/images/wd-p2.png?v=${ASSET_REV}` },
+          { title: 'Real Time Network Monitoring and Operations Platform', description: 'A live, internally developed monitoring platform used to operate and maintain production client networks. The interface shown contains censored and anonymized data to protect customer privacy and adhere to security and confidentiality requirements. The system aggregates ICMP, SNMP, NetFlow, and API based telemetry into a centralized view with real time health status, alerts, notifications, and historical metrics. While still under active development, this platform is already deployed in production and serves as a core operational tool for 24/7 monitoring and network visibility across dozens of sites.', imageSrc: `/assets/images/wd-p3.png?v=${ASSET_REV}` },
         ],
       },
       {
@@ -713,12 +714,27 @@ export default function Home() {
                   </>
                 )}
               </div>
-              <a href="https://github.com/colbywest5" target="_blank" rel="noopener noreferrer" className="text-[#26374D] hover:text-[#536D82] transition-colors" aria-label="GitHub">
-                <Github size={16} className="sm:w-[18px] sm:h-[18px]" />
-              </a>
-              <a href="https://www.linkedin.com/in/colby-west5/" target="_blank" rel="noopener noreferrer" className="text-[#26374D] hover:text-[#536D82] transition-colors" aria-label="LinkedIn">
-                <LinkedInMark size={16} />
-              </a>
+              <Tooltip content="GitHub" placement="bottom">
+                <a href="https://github.com/colbywest5" target="_blank" rel="noopener noreferrer" className="text-[#26374D] hover:text-[#536D82] transition-colors p-1" aria-label="GitHub">
+                  <Github size={16} className="sm:w-[18px] sm:h-[18px]" />
+                </a>
+              </Tooltip>
+              <Tooltip content="LinkedIn" placement="bottom">
+                <a href="https://www.linkedin.com/in/colby-west5/" target="_blank" rel="noopener noreferrer" className="text-[#26374D] hover:text-[#536D82] transition-colors p-1" aria-label="LinkedIn">
+                  <LinkedInMark size={16} />
+                </a>
+              </Tooltip>
+              <Tooltip content="Download Resume" placement="bottom">
+                <a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-[#26374D] hover:text-[#536D82] transition-colors p-1" aria-label="Download Resume">
+                  <Image
+                    src="/assets/images/pdf-icon.png"
+                    alt="PDF"
+                    width={18}
+                    height={18}
+                    className="w-4 h-4 sm:w-[18px] sm:h-[18px]"
+                  />
+                </a>
+              </Tooltip>
             </div>
           </div>
         </div>
@@ -734,7 +750,7 @@ export default function Home() {
               className="col-span-12 md:col-span-6 lg:col-span-7 space-y-6 md:space-y-8"
             >
               <div className="space-y-3 md:space-y-4">
-                <div className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-[#536D82]">Colby West</div>
+                <div className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-[#536D82] font-mono">Colby West</div>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] tracking-tight text-[#26374D] break-normal hyphens-none">
                   Network Engineering
                   <br />
@@ -1023,28 +1039,43 @@ export default function Home() {
                   {[
                     {
                       icon: <Network size={14} />,
-                      title: 'Network Architecture + Operations',
-                      bullets: ['Routing/switching, segmentation (VLAN/VRF), QoS', 'WAN design + resiliency (IPsec, failover, multi-site)'],
+                      title: 'Network Architecture and Operations',
+                      bullets: [
+                        'Enterprise LAN and WAN design, segmentation, QoS, and multi-site resiliency.',
+                        'Production experience operating and scaling high-availability networks.',
+                      ],
                     },
                     {
                       icon: <ShieldCheck size={14} />,
-                      title: 'Security Engineering (Pragmatic)',
-                      bullets: ['Firewall policy, VPNs, segmentation, risk reduction', 'Compliance-driven controls (HIPAA/GLBA/PCI) + remediation'],
+                      title: 'Security and Risk Engineering',
+                      bullets: [
+                        'Firewall policy, VPNs, and pragmatic security controls.',
+                        'Hands-on compliance work across HIPAA, GLBA, and PCI DSS environments.',
+                      ],
                     },
                     {
                       icon: <Building2 size={14} />,
-                      title: 'High-Tempo MSP Delivery',
-                      bullets: ['Escalations, incident response, RCA + change control', 'Vendor/ISP escalation, SLAs, multi-client priorities'],
+                      title: 'Production Operations',
+                      bullets: [
+                        'Incident response, escalations, and root cause analysis in high-tempo environments.',
+                        'Strong change control and SLA driven execution across multiple clients.',
+                      ],
                     },
                     {
                       icon: <Code2 size={14} />,
-                      title: 'Automation + Standardization',
-                      bullets: ['PowerShell automation + API scripting', 'Config templating, repeatable rollouts, runbooks'],
+                      title: 'Automation and Standardization',
+                      bullets: [
+                        'PowerShell and API automation to reduce manual effort.',
+                        'Repeatable deployments, configuration standards, and runbooks.',
+                      ],
                     },
                     {
                       icon: <Briefcase size={14} />,
                       title: 'Technical Leadership',
-                      bullets: ['Architecture decisions + tradeoffs (security vs uptime)', 'Clear comms with execs + engineers; training/support'],
+                      bullets: [
+                        'Clear technical decision making and documentation.',
+                        'Effective communication with engineers, leadership, and end users.',
+                      ],
                     },
                   ].map((s, idx) => (
                     <div key={idx} className="flex items-start gap-2.5">
@@ -1290,13 +1321,33 @@ export default function Home() {
               <div className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-white/70 mb-3 sm:mb-4">Contact</div>
               <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 sm:mb-8 text-white">Let's Work<br />Together</h2>
               <p className="text-sm sm:text-base text-white/80 leading-relaxed max-w-md">
-                If you’re building something that touches networks, security, or modern web apps, I’m happy to jump in—architecture, implementation, or cleanup.
+                If you’re building something that touches networks, security, or modern web apps, I’m prepared to lead architecture, drive implementation, or handle cleanup.
                 Fast communication, clean execution.
               </p>
 
               <div className="mt-6 space-y-3">
                 <div className="flex items-center gap-3 text-white/85">
-
+                  <Tooltip content="GitHub">
+                    <a href="https://github.com/colbywest5" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white/70 transition-colors p-1" aria-label="GitHub">
+                      <Github size={20} />
+                    </a>
+                  </Tooltip>
+                  <Tooltip content="LinkedIn">
+                    <a href="https://www.linkedin.com/in/colby-west5/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white/70 transition-colors p-1" aria-label="LinkedIn">
+                      <LinkedInMark size={20} />
+                    </a>
+                  </Tooltip>
+                  <Tooltip content="Download Resume">
+                    <a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white/70 transition-colors p-1" aria-label="Download Resume">
+                      <Image
+                        src="/assets/images/pdf-icon.png"
+                        alt="PDF"
+                        width={20}
+                        height={20}
+                        className="w-5 h-5 invert brightness-0" // Invert for white icon on dark background
+                      />
+                    </a>
+                  </Tooltip>
                 </div>
 
                 <div className="flex flex-wrap gap-3 pt-1">
@@ -1470,37 +1521,58 @@ export default function Home() {
       )}
 
       {/* Footer */}
-      <footer className="bg-[#FAFAFA]/95 backdrop-blur-sm border-t border-[#9DB2BF]/30">
+      <footer className="bg-[#FAFAFA]/95 backdrop-blur-sm border-t border-[#9DB2BF]/30 font-mono">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-6">
-          <div className="grid grid-cols-1 sm:grid-cols-3 items-center gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 items-center gap-4 text-[10px] sm:text-xs">
             {/* Left Column */}
-            <div className="text-xs sm:text-sm text-[#536D82] text-center sm:text-left">
-              Network Engineer & Web Developer
+            <div className="text-[#536D82] text-center sm:text-left">
+              © {new Date().getFullYear()} Colby West. All rights reserved.
             </div>
             {/* Center Column */}
-            <div className="text-xs sm:text-sm text-[#536D82] text-center">
-              © {new Date().getFullYear()} Colby West. All rights reserved.
+            <div className="text-[#536D82] text-center">
+              Developed with ❤︎ by Colby West
             </div>
             {/* Right Column */}
             <div className="flex items-center justify-center sm:justify-end gap-3 sm:gap-4">
-              <a
-                href="https://github.com/colbywest5"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#26374D] hover:text-[#536D82] transition-colors"
-                aria-label="GitHub"
-              >
-                <Github size={16} className="sm:w-[18px] sm:h-[18px]" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/colby-west5/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#26374D] hover:text-[#536D82] transition-colors"
-                aria-label="LinkedIn"
-              >
-                <LinkedInMark size={16} />
-              </a>
+              <Tooltip content="GitHub">
+                <a
+                  href="https://github.com/colbywest5"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#26374D] hover:text-[#536D82] transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github size={16} className="sm:w-[18px] sm:h-[18px]" />
+                </a>
+              </Tooltip>
+              <Tooltip content="LinkedIn">
+                <a
+                  href="https://www.linkedin.com/in/colby-west5/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#26374D] hover:text-[#536D82] transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <LinkedInMark size={16} />
+                </a>
+              </Tooltip>
+              <Tooltip content="Download Resume">
+                <a
+                  href="/assets/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#26374D] hover:text-[#536D82] transition-colors"
+                  aria-label="Download Resume"
+                >
+                  <Image
+                    src="/assets/images/pdf-icon.png"
+                    alt="PDF"
+                    width={18}
+                    height={18}
+                    className="w-4 h-4 sm:w-[18px] sm:h-[18px]"
+                  />
+                </a>
+              </Tooltip>
             </div>
           </div>
         </div>
