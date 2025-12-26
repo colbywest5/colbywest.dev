@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9DB2BF" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#536D82" stop-opacity="0.18"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9DB2BF" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#536D82" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="24" y="24" width="1152" height="627" rx="28" fill="url(#bg)" stroke="url(#stroke)" stroke-width="4"/>
+
+  <g fill="none" stroke="#26374D" stroke-opacity="0.18" stroke-width="4">
+    <path d="M120 140H1080"/>
+    <path d="M120 220H1080"/>
+    <path d="M120 300H1080"/>
+    <path d="M120 380H1080"/>
+    <path d="M120 460H1080"/>
+    <path d="M120 540H1080"/>
+  </g>
+
+  <g fill="#26374D" fill-opacity="0.65" font-family="Arial, Helvetica, sans-serif">
+    <text x="120" y="110" font-size="42" font-weight="700">Screenshot Placeholder</text>
+    <text x="120" y="605" font-size="26" font-weight="500" fill-opacity="0.45">Drop your real screenshots into public/assets/work/ and update imageSrc paths.</text>
+  </g>
+</svg>
+
+
