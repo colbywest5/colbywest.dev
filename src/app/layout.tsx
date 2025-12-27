@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Colby West - Network Engineering & Web Development",
   description: "Bridging infrastructure and application layers with precision engineering and modern development practices.",
+  icons: {
+    icon: '/assets/images/logo-white.ico',
+  },
 };
 
 export const viewport: Viewport = {
@@ -37,7 +40,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-            <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" />
+        <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" />
         <ConsoleNoiseFilter />
         <div data-site-root>{children}</div>
       </body>
