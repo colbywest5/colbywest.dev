@@ -55,9 +55,12 @@ export async function POST(req: Request) {
 
   // Forward to Formspree
   const forwardForm = new URLSearchParams();
-  forwardForm.set('fullname', fullname);
-  forwardForm.set('email', email);
-  forwardForm.set('message', message);
+  // Simple sanitization: strip HTML tags to prevent clutter/confusion in email
+  const sanitize = (str: string) => str.replace(/<[^>]*>?/gm, '');
+
+  forwardForm.set('fullname', sanitize(fullname));
+  forwardForm.set('email', sanitize(email));
+  forwardForm.set('message', sanitize(message));
 
   const forwardRes = await fetch(FORMSPREE_ENDPOINT, {
     method: 'POST',
