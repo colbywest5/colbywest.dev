@@ -810,8 +810,8 @@ export default function Home() {
               <button onClick={() => scrollToSection('contact')} className="text-[#536D82] hover:text-[#26374D] transition-colors">Contact</button>
             </div>
             <div className="flex items-center gap-2 sm:gap-3 pr-2">
-              {/* Viewport Preview Dropdown */}
-              <div className="relative">
+              {/* Viewport Preview Dropdown (Disabled per user request) */}
+              {/* <div className="relative">
                 <button
                   onClick={() => setViewportDropdownOpen(!viewportDropdownOpen)}
                   className="text-[#26374D] hover:text-[#536D82] transition-colors p-1"
@@ -851,7 +851,7 @@ export default function Home() {
                     </div>
                   </>
                 )}
-              </div>
+              </div> */}
               <Tooltip content="GitHub" placement="bottom">
                 <a href="https://github.com/colbywest5" target="_blank" rel="noopener noreferrer" className="text-[#26374D] hover:text-[#536D82] transition-colors p-1" aria-label="GitHub">
                   <Github size={16} className="sm:w-[18px] sm:h-[18px]" />
