@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, LayoutGroup, motion, useScroll, useTransform } from 'framer-motion';
-import { Github, Mail, ArrowRight, Award, BookOpen, Briefcase, Building2, Code2, Cpu, GraduationCap, Network, RotateCcw, ShieldCheck, School, Wrench, X, CheckCircle2, XCircle, ChevronDown, Smartphone, Monitor, FileDown } from 'lucide-react';
+import { Github, Mail, ArrowRight, Award, BookOpen, Briefcase, Building2, Code2, Cpu, GraduationCap, Network, RotateCcw, ShieldCheck, School, Wrench, X, CheckCircle2, XCircle, ChevronDown, Smartphone, Monitor, FileDown, Eye, EyeOff } from 'lucide-react';
 import Image from 'next/image';
 import TurnstileWidget from './TurnstileWidget';
 import { Tooltip } from '@/components/Tooltip';
@@ -29,6 +29,55 @@ function LinkedInMark({ size = 18 }: { size?: number }) {
     </svg>
   );
 }
+
+function DownloadMark({ size = 18 }: { size?: number }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={size}
+      viewBox="0 -960 960 960"
+      width={size}
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M480-315.33 284.67-510.67l47.33-48L446.67-444v-356h66.66v356L628-558.67l47.33 48L480-315.33ZM226.67-160q-27 0-46.84-19.83Q160-199.67 160-226.67V-362h66.67v135.33h506.66V-362H800v135.33q0 27-19.83 46.84Q760.33-160 733.33-160H226.67Z" />
+    </svg>
+  );
+}
+
+function ClosedEye({ size = 18, ...props }: React.ComponentProps<'svg'> & { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <path d="m15 18-.722-3.25" />
+      <path d="M2 8a10.645 10.645 0 0 0 20 0" />
+      <path d="m20 15-1.726-2.05" />
+      <path d="m4 15 1.726-2.05" />
+      <path d="m9 18 .722-3.25" />
+    </svg>
+  );
+}
+
+// Custom Icons for TTT
+function IconGlobal({ size = 18, ...props }: React.ComponentProps<'svg'> & { size?: number }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" height={size} viewBox="0 -960 960 960" width={size} fill="currentColor" {...props}>
+      <path d="M480-80q-83.33 0-156.33-31.5-73-31.5-127.17-85.67-54.17-54.16-85.33-127.5Q80-398 80-481.33 80-565 111.17-637.5q31.16-72.5 85.33-126.67 54.17-54.16 127.17-85Q396.67-880 480-880q83.67 0 156.5 30.83 72.83 30.84 127 85Q817.67-710 848.83-637.5 880-565 880-481.33q0 83.33-31.17 156.66-31.16 73.34-85.33 127.5-54.17 54.17-127 85.67T480-80Zm0-66q32-36 54-80t36-101.33H390.67Q404-272.67 426-227.67T480-146Zm-91.33-13.33q-22.67-36.34-39.17-77.5Q333-278 322-327.33H182.67q35 64 82.83 103.33t123.17 64.67ZM572-160q66.67-21.33 119.5-64.33t85.83-103H638.67Q627-278.67 610.83-237.5 594.67-196.33 572-160ZM158-394h151.33q-3-24.67-3.83-45.5-.83-20.83-.83-41.83 0-23.67 1.16-43.17Q307-544 310-566.67H158q-6.33 22.67-8.83 41.84-2.5 19.16-2.5 43.5 0 24.33 2.5 44.5 2.5 20.16 8.83 42.83Zm219.33 0h206q3.67-27.33 4.84-46.83 1.16-19.5 1.16-40.5 0-20.34-1.16-39.17-1.17-18.83-4.84-46.17h-206q-3.66 27.34-4.83 46.17-1.17 18.83-1.17 39.17 0 21 1.17 40.5t4.83 46.83ZM650-394h152q6.33-22.67 8.83-42.83 2.5-20.17 2.5-44.5 0-24.34-2.5-43.5-2.5-19.17-8.83-41.84H650.67q3 30 4.16 48.84Q656-499 656-481.33q0 21.66-1.5 41.16-1.5 19.5-4.5 46.17Zm-12-239.33h139.33Q745.67-696 692.83-739q-52.83-43-121.5-61.67Q594-765 610.17-724.5 626.33-684 638-633.33Zm-247.33 0h180q-11.34-50-35-96-23.67-46-55.67-83.34-30 30-51 72.34-21 42.33-38.33 107Zm-208 0h140Q333-682 348.83-722.17 364.67-762.33 388-800q-68.67 18.67-120.5 61t-84.83 105.67Z" />
+    </svg>
+  );
+}
+
+
 
 const tttLines: number[][] = [
   [0, 1, 2],
@@ -200,6 +249,13 @@ const TicTacToe = () => {
   const [oMoves, setOMoves] = useState<number[]>([]);
   const [turn, setTurn] = useState<'X' | 'O'>('X');
   const [busy, setBusy] = useState(false);
+
+  // Scoring
+  const [sessionScore, setSessionScore] = useState({ x: 0, o: 0, d: 0 });
+  const [globalStats, setGlobalStats] = useState({ xWins: 0, oWins: 0, draws: 0 });
+  const [showGlobal, setShowGlobal] = useState(false);
+  const processedWin = useRef<TTT | 'draw' | null>(null);
+
   const winner = useMemo(() => tttWinner(board), [board]);
 
   const winningLine = useMemo(() => {
@@ -209,19 +265,56 @@ const TicTacToe = () => {
     return null;
   }, [board]);
 
+  // Load Global Stats
+  useEffect(() => {
+    fetch('/api/tictactoe')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data.xWins === 'number') setGlobalStats(data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   const reset = () => {
     setBoard(Array(9).fill(null));
     setXMoves([]);
     setOMoves([]);
     setTurn('X');
     setBusy(false);
+    processedWin.current = null;
   };
 
-  // If someone wins (or it's a draw), briefly show the result then reset.
+  // Handle Win/Loss/Draw
   useEffect(() => {
     if (!winner) return;
+
+    // Only process if this specific win hasn't been handled
+    if (processedWin.current !== winner) {
+      processedWin.current = winner;
+
+      // Session
+      setSessionScore((prev) => ({
+        x: winner === 'X' ? prev.x + 1 : prev.x,
+        o: winner === 'O' ? prev.o + 1 : prev.o,
+        d: winner === 'draw' ? prev.d + 1 : prev.d,
+      }));
+
+      // Global
+      fetch('/api/tictactoe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ winner }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && typeof data.xWins === 'number') setGlobalStats(data);
+        })
+        .catch((err) => console.error(err));
+    }
+
     setBusy(true);
-    const t = setTimeout(() => reset(), 900);
+    // Longer delay to see the result/score update
+    const t = setTimeout(() => reset(), 2000);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [winner]);
@@ -375,20 +468,53 @@ const TicTacToe = () => {
                 })}
               </div>
 
-              {/* Bottom legend */}
-              <div className="mt-1 hidden sm:flex items-center justify-between text-[9px] sm:text-[10px] text-white/45">
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-amber-300" />
-                    You (X)
+              {/* Scoreboard */}
+              <div className="mt-2 grid grid-cols-3 items-center text-[10px] font-medium select-none text-white/80">
+                <div className="flex items-center justify-start gap-2">
+                  {/* Dynamic Label: "User" (Session) vs "Users" (Global) */}
+                  <span className="text-amber-300 font-bold flex items-center">
+                    User
+                    <motion.span
+                      initial={false}
+                      animate={{ width: showGlobal ? 'auto' : 0, opacity: showGlobal ? 1 : 0 }}
+                      style={{ overflow: 'hidden', display: 'inline-block' }}
+                    >
+                      s
+                    </motion.span>
+                  </span>
+                  <span className="bg-white/10 px-1.5 py-0.5 rounded text-white min-w-[20px] text-center">
+                    {showGlobal ? globalStats.xWins : sessionScore.x}
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-cyan-300" />
-                    AI (O)
-                  </span>
+
+                <div className="text-white/30 tracking-widest text-[8px] uppercase text-center">
+                  {winner ? (winner === 'draw' ? 'DRAW' : 'WINNER') : 'VS'}
                 </div>
+
+                <div className="flex items-center justify-end gap-2">
+                  <span className="bg-white/10 px-1.5 py-0.5 rounded text-white min-w-[20px] text-center">
+                    {showGlobal ? globalStats.oWins : sessionScore.o}
+                  </span>
+                  {/* Dynamic Label: Always "AI" per request */}
+                  <span className="text-cyan-300 font-bold">AI</span>
+                </div>
+              </div>
+
+              {/* Global Toggle - Chip Style */}
+              <div className="mt-2.5 flex justify-center w-full">
+                <button
+                  onClick={() => setShowGlobal(!showGlobal)}
+                  className="inline-flex items-center justify-center gap-1.5 px-2 py-1 rounded border border-white/10 bg-white/5 text-[9px] text-white/70 hover:bg-white/10 hover:text-white transition-colors uppercase tracking-wider group"
+                >
+                  {/* Text: "Session Stats" vs "Global Stats" */}
+                  {showGlobal ? 'Global Stats' : 'Session Stats'}
+
+                  {/* Icon: Always use Global Icon, colored if active */}
+                  <IconGlobal
+                    size={12}
+                    className={`transition-all ${showGlobal ? 'text-amber-300 opacity-100' : 'text-white opacity-40 group-hover:opacity-80'}`}
+                  />
+                </button>
               </div>
             </div>
           </div>
@@ -420,7 +546,37 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Load viewport type from localStorage
+  // Update fixed elements padding when scroll is locked
+  useEffect(() => {
+    if (!workModalLock) {
+      document.documentElement.style.removeProperty('--scrollbar-padding');
+      return;
+    }
+
+    const prevOverflow = document.body.style.overflow;
+    const prevPaddingRight = document.body.style.paddingRight;
+
+    // Prevent layout "hiccup" when locking/unlocking scroll (scrollbar width reflow).
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = 'hidden';
+
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      document.documentElement.style.setProperty('--scrollbar-padding', `${scrollbarWidth}px`);
+    }
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeWorkCard();
+    };
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.body.style.paddingRight = prevPaddingRight;
+      document.documentElement.style.removeProperty('--scrollbar-padding');
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [workModalLock]);
   useEffect(() => {
     if (isInIframe) return;
     try {
@@ -495,28 +651,7 @@ export default function Home() {
     // layout transition is still running.
   };
 
-  useEffect(() => {
-    if (!workModalLock) return;
 
-    const prevOverflow = document.body.style.overflow;
-    const prevPaddingRight = document.body.style.paddingRight;
-
-    // Prevent layout "hiccup" when locking/unlocking scroll (scrollbar width reflow).
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    document.body.style.overflow = 'hidden';
-    if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
-
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeWorkCard();
-    };
-    window.addEventListener('keydown', onKeyDown);
-
-    return () => {
-      document.body.style.overflow = prevOverflow;
-      document.body.style.paddingRight = prevPaddingRight;
-      window.removeEventListener('keydown', onKeyDown);
-    };
-  }, [workModalLock]);
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -593,7 +728,7 @@ export default function Home() {
       {
         title: 'Network Infrastructure',
         category: 'NETWORK',
-        description: 'Enterprise network design, implementation, and optimization',
+        description: 'Designing and operating production networks that scale, segment, and recover under real load.',
         examples: [
           { title: 'Production Network Traffic and Client Visibility', description: 'This view represents a live production environment with sustained traffic volumes and a diverse client base across wired and wireless infrastructure. I manage end-to-end visibility into client behavior, bandwidth consumption, and application usage to ensure predictable performance and capacity planning. This network supports continuous utilization under load while maintaining stability, segmentation, and policy enforcement across devices and tenants.', imageSrc: `/assets/images/ni-p1.png?v=${ASSET_REV}` },
           { title: 'Enterprise Wireless Network Health and Optimization', description: 'This snapshot shows real-time wireless health metrics from a production enterprise WiFi deployment. I designed, deployed, and actively tune this environment to deliver fast client association, seamless roaming, strong signal quality, and low latency at scale. Ongoing monitoring and optimization ensure reliability for high-density usage while maintaining security, performance baselines, and operational headroom.', imageSrc: `/assets/images/ni-p2.png?v=${ASSET_REV}` },
@@ -603,7 +738,7 @@ export default function Home() {
       {
         title: 'Website Development',
         category: 'WEB',
-        description: 'Modern web applications built with React, Next.js, and TypeScript',
+        description: 'Building real-world web applications with production constraints, not demo assumptions.',
         examples: [
           { title: 'Enterprise Consolidated Billing Platform', description: 'An in-progress enterprise billing platform designed to centralize vendor spend, invoices, and financial visibility across multiple services. The system includes real-time dashboards, spend analysis, and an AI-assisted advisor layer to surface cost anomalies, optimization opportunities, and usage trends. Built with scalability and extensibility in mind, this project focuses on turning fragmented billing data into actionable operational insight.', imageSrc: `/assets/images/wd-p1.jpg?v=${ASSET_REV}` },
           { title: 'B2B Partner Portal and Referral Platform', description: 'A live, production B2B web application built to support business partnerships at scale. The platform includes an analytics dashboard, referral lifecycle management, integrated support workflows, internal communication tools, role-based access control, and administrative oversight. Designed and implemented as a full end-to-end system, this application supports real users, real workflows, and ongoing operational use in production.', imageSrc: `/assets/images/wd-p2.png?v=${ASSET_REV}` },
@@ -611,23 +746,23 @@ export default function Home() {
         ],
       },
       {
-        title: 'Automation & Scripting',
-        category: 'AUTOMATION',
-        description: 'PowerShell and API scripting to eliminate repetitive tasks',
+        title: 'Systems Thinking and Architecture',
+        category: 'ARCHITECTURE',
+        description: 'Making deliberate architectural decisions that reduce fragility and long-term operational cost.',
         examples: [
-          { title: 'User Provisioning Automation', description: 'Automated M365 user onboarding/offboarding, reducing manual work by 4 hours per week', imageSrc: '/assets/work/placeholder.svg' },
-          { title: 'Network Config Generator', description: 'Built PowerShell tool to generate standardized switch/router configs from templates', imageSrc: '/assets/work/placeholder.svg' },
-          { title: 'Backup Verification Scripts', description: 'Created automated backup verification system with email alerts and reporting', imageSrc: '/assets/work/placeholder.svg' },
+          { title: 'Intentional Network Topology and Segmentation', description: 'A live production network visualized end to end, showing deliberate segmentation across core routing, distribution, and access layers. Devices and services are grouped by function, not convenience, making dependencies explicit and reducing blast radius as the environment scales.', imageSrc: `/assets/images/sta-p1.png?v=${ASSET_REV}` },
+          { title: 'Architecture Designed for Observability', description: 'Real-time visibility into multiple production sites with consistent latency, zero packet loss, and predictable performance. This view reflects architectural decisions that prioritize stability, monitoring, and early detection rather than reactive troubleshooting.', imageSrc: `/assets/images/sta-p2.png?v=${ASSET_REV}` },
+          { title: 'Layer 3 Segmentation and Intent-Based Design', description: 'A production Layer 3 design illustrating intentional network segmentation by function rather than device. VLANs, subnets, routing, and policy are organized to isolate traffic domains, support external integrations, and maintain predictable behavior as the environment grows. Sensitive identifiers are intentionally censored to preserve security and privacy.', imageSrc: `/assets/images/sta-p3.png?v=${ASSET_REV}` },
         ],
       },
       {
-        title: 'Security Solutions',
+        title: 'Operational Reliability',
         category: 'SECURITY',
-        description: 'Firewall policies, VPNs, and compliance-driven security controls',
+        description: 'Operating imperfect systems in production and keeping them reliable anyway.',
         examples: [
-          { title: 'FortiGate Policy Optimization', description: 'Redesigned firewall rulebase, reducing rules by 40% while improving security posture', imageSrc: '/assets/work/placeholder.svg' },
-          { title: 'Site-to-Site VPN Deployment', description: 'Configured IPsec VPN tunnels for secure multi-site connectivity', imageSrc: '/assets/work/placeholder.svg' },
-          { title: 'Security Audit & Remediation', description: 'Conducted security assessments and implemented remediation plans for PCI compliance', imageSrc: '/assets/work/placeholder.svg' },
+          { title: 'High-Availability WAN and Failover Strategy', description: 'Production internet connectivity designed with explicit primary and secondary uplinks, continuous health validation, and automatic failover. Uptime and latency are monitored at the gateway level to ensure predictable behavior during provider degradation without manual intervention.', imageSrc: `/assets/images/or-p1.png?v=${ASSET_REV}` },
+          { title: 'Reliability Through Imperfect Systems', description: 'Multi-site production monitoring that distinguishes between unavoidable degradation and actionable failure. Cellular failover links and unstable last-mile circuits are expected sources of packet loss and latency variance, yet uptime is preserved through redundancy, prioritization, and informed response rather than reactive intervention.', imageSrc: `/assets/images/or-p2.png?v=${ASSET_REV}` },
+          { title: 'Signal-Driven Wireless Performance Analysis', description: 'Wireless health evaluated using per-band utilization and packet loss metrics to distinguish environmental constraints from actionable issues. This approach avoids reactive tuning and instead prioritizes remediation based on measurable impact and user experience, with degraded domains identified explicitly rather than hidden.', imageSrc: `/assets/images/or-p3.png?v=${ASSET_REV}` },
         ],
       },
     ],
@@ -655,7 +790,10 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#FAFAFA] text-[#26374D] font-sans antialiased">
       {/* Fixed Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 bg-[#FAFAFA]/95 backdrop-blur-sm transition-all duration-300 ${scrolled ? 'shadow-sm border-b border-[#9DB2BF]/30' : ''}`}>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 bg-[#FAFAFA]/95 backdrop-blur-sm transition-all duration-300 ${scrolled ? 'shadow-sm border-b border-[#9DB2BF]/30' : ''}`}
+        style={{ paddingRight: 'var(--scrollbar-padding)' }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-6">
           <div className="flex items-center justify-between">
             <Image
@@ -671,7 +809,7 @@ export default function Home() {
               <button onClick={() => scrollToSection('about')} className="text-[#536D82] hover:text-[#26374D] transition-colors">About</button>
               <button onClick={() => scrollToSection('contact')} className="text-[#536D82] hover:text-[#26374D] transition-colors">Contact</button>
             </div>
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 pr-2">
               {/* Viewport Preview Dropdown */}
               <div className="relative">
                 <button
@@ -726,13 +864,7 @@ export default function Home() {
               </Tooltip>
               <Tooltip content="Download Resume" placement="bottom">
                 <a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-[#26374D] hover:text-[#536D82] transition-colors p-1" aria-label="Download Resume">
-                  <Image
-                    src="/assets/images/pdf-icon.png"
-                    alt="PDF"
-                    width={18}
-                    height={18}
-                    className="w-4 h-4 sm:w-[18px] sm:h-[18px]"
-                  />
+                  <DownloadMark size={22} />
                 </a>
               </Tooltip>
             </div>
@@ -742,7 +874,33 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 sm:pt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 w-full">
+        {/* Subtle Background Effect - Force Render */}
+        <div className="absolute inset-0 pointer-events-none select-none flex items-center justify-center overflow-hidden">
+          <div
+            className="relative w-[1400px] h-[1400px] translate-x-[20%] translate-y-[10%] sm:translate-x-[25%] sm:translate-y-[5%]"
+            style={{ opacity: 0.08 }}
+          >
+            {/* Base Gradient: Deep Blue -> White/Light -> Deep Blue/Black */}
+            <div
+              className="absolute inset-0 blur-[80px]"
+              style={{
+                background: 'conic-gradient(from 225deg at 50% 50%, #020617 0deg, #1e3a8a 100deg, #e2e8f0 180deg, #1e3a8a 260deg, #020617 360deg)'
+              }}
+            />
+            {/* Dot Matrix Overlay */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: 'radial-gradient(#1e293b 2px, transparent 2px)',
+                backgroundSize: '24px 24px',
+                maskImage: 'radial-gradient(circle at center, black 40%, transparent 80%)',
+                WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 80%)'
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 w-full relative z-10">
           <div className="grid grid-cols-12 gap-6 md:gap-8 items-center">
             {/* Left Column - Text */}
             <motion.div
@@ -807,6 +965,7 @@ export default function Home() {
 
           <LayoutGroup id="work-cards">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+
               {workProjects.map((project, idx) => (
                 <motion.div
                   key={idx}
@@ -817,15 +976,16 @@ export default function Home() {
                 >
                   <motion.div
                     layoutId={`work-card-${idx}`}
-                    transition={{ type: 'spring', stiffness: 520, damping: 60, mass: 0.95 }}
-                    className="bg-white border border-[#9DB2BF]/30 rounded-lg overflow-hidden hover:shadow-lg transition-shadow will-change-transform"
+                    layout
+                    transition={{ type: 'spring', stiffness: 220, damping: 25, mass: 1 }}
+                    className="group bg-white border border-[#9DB2BF]/30 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow"
                     role="button"
                     tabIndex={0}
                     onClick={() => openWorkCard(idx)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') openWorkCard(idx);
                     }}
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: 'pointer', borderRadius: '1rem' }}
                   >
                     <div className="p-8 sm:p-10 md:p-12">
                       <div className="flex items-start justify-between gap-4">
@@ -834,8 +994,9 @@ export default function Home() {
                           <h3 className="text-xl sm:text-2xl font-bold text-[#26374D] mb-3">{project.title}</h3>
                           <p className="text-sm sm:text-base text-[#536D82] leading-relaxed">{project.description}</p>
                         </div>
-                        <div className="text-[#536D82] shrink-0">
-                          <ArrowRight size={18} className="rotate-90" />
+                        <div className="text-[#536D82] shrink-0 relative w-[18px] h-[18px]">
+                          <ClosedEye size={18} className="absolute inset-0 opacity-100 group-hover:opacity-0 transition-opacity duration-300" />
+                          <Eye size={18} className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </div>
                       </div>
                     </div>
@@ -873,9 +1034,10 @@ export default function Home() {
                     <div className="min-h-full flex items-start justify-center px-4 sm:px-6 md:px-8 py-10 md:py-16">
                       <motion.div
                         layoutId={`work-card-${expandedCard}`}
-                        transition={{ type: 'spring', stiffness: 520, damping: 60, mass: 0.95 }}
-                        className="w-full max-w-6xl bg-white border border-[#9DB2BF]/30 rounded-2xl overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.35)] will-change-transform"
+                        transition={{ type: 'spring', stiffness: 220, damping: 25, mass: 1 }}
+                        className="w-full max-w-6xl bg-white border border-[#9DB2BF]/30 rounded-2xl overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.35)]"
                         onClick={(e) => e.stopPropagation()}
+                        style={{ borderRadius: '1rem' }}
                       >
                         <div className="p-8 sm:p-10 md:p-12 border-b border-[#9DB2BF]/20">
                           <div className="flex items-start justify-between gap-4">
@@ -1001,10 +1163,10 @@ export default function Home() {
             )}
           </AnimatePresence>
         </div>
-      </section>
+      </section >
 
       {/* About Section */}
-      <section id="about" className="min-h-screen py-16 sm:py-24 md:py-32 bg-[#FAFAFA]">
+      < section id="about" className="min-h-screen py-16 sm:py-24 md:py-32 bg-[#FAFAFA]" >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid grid-cols-12 gap-6 md:gap-8">
             <div className="col-span-12 md:col-span-4">
@@ -1014,10 +1176,7 @@ export default function Home() {
             <div className="col-span-12 md:col-span-8">
               <div className="bg-white p-8 sm:p-12 border border-[#9DB2BF]/30 rounded-lg">
                 <p className="text-sm sm:text-base text-[#536D82] leading-relaxed">
-                  With a strong passion for technology and five years of hands-on experience in the IT industry, I am a dedicated,
-                  self-taught professional committed to excellence. Through practical experience and continuous self-education, I’ve
-                  built deep strength in network operations, security-minded infrastructure, and clear communication with technical and
-                  non-technical stakeholders.
+                  I operate and build production systems with a focus on reliability, security, and long-term maintainability. My background spans network operations, security-focused infrastructure, and hands-on troubleshooting in environments where uptime matters and failures are visible. I prioritize clear architecture, predictable behavior, and communication that works across technical and non-technical teams.
                 </p>
               </div>
             </div>
@@ -1097,32 +1256,34 @@ export default function Home() {
                   ))}
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-[#9DB2BF]/20">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#536D82] mb-3">Platforms & Tools</h4>
+                <div className="mt-8 pt-8 border-t border-[#9DB2BF]/20">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#536D82] mb-4">Platforms & Ecosystems</h4>
                   <div className="flex flex-wrap gap-2">
                     {[
                       'Cisco',
                       'Meraki',
                       'Aruba',
                       'UniFi',
+                      'Peplink (InControl 2)',
                       'FortiGate',
-                      'Azure',
+                      'Huntress',
+                      'ThreatLocker',
+                      'Identity & Access (MFA)',
+                      'Microsoft 365 (Identity, Security, Admin)',
                       'Linux',
-                      'PowerShell',
-                      'Python',
-                      'Wireshark',
-                      'PRTG',
-                      'Grafana',
-                      'Git',
-                      'Docker',
                       'VMware',
                       'Hyper-V',
-                    ].map((t) => (
+                      'Azure',
+                      'ConnectWise ScreenConnect',
+                      'RMM & PSA Platforms',
+                      'Pax8',
+                      'Telecommunications',
+                    ].map((item) => (
                       <span
-                        key={t}
-                        className="px-3 py-1.5 bg-[#FAFAFA] border border-[#9DB2BF]/30 rounded-full text-xs text-[#536D82]"
+                        key={item}
+                        className="px-2.5 py-1 bg-[#FAFAFA] border border-[#9DB2BF]/30 rounded text-xs font-medium text-[#536D82] hover:bg-white hover:border-[#9DB2BF]/50 transition-colors cursor-default"
                       >
-                        {t}
+                        {item}
                       </span>
                     ))}
                   </div>
@@ -1321,35 +1482,11 @@ export default function Home() {
               <div className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-white/70 mb-3 sm:mb-4">Contact</div>
               <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6 sm:mb-8 text-white">Let's Work<br />Together</h2>
               <p className="text-sm sm:text-base text-white/80 leading-relaxed max-w-md">
-                If you’re building something that touches networks, security, or modern web apps, I’m prepared to lead architecture, drive implementation, or handle cleanup.
-                Fast communication, clean execution.
+                If you’re working on networks, security, or modern web applications, I’m happy to collaborate. I bring experience designing systems, implementing solutions, and cleaning up environments that need attention.
+                <br></br><br></br>Clear communication and thoughtful execution come standard.
               </p>
 
               <div className="mt-6 space-y-3">
-                <div className="flex items-center gap-3 text-white/85">
-                  <Tooltip content="GitHub">
-                    <a href="https://github.com/colbywest5" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white/70 transition-colors p-1" aria-label="GitHub">
-                      <Github size={20} />
-                    </a>
-                  </Tooltip>
-                  <Tooltip content="LinkedIn">
-                    <a href="https://www.linkedin.com/in/colby-west5/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white/70 transition-colors p-1" aria-label="LinkedIn">
-                      <LinkedInMark size={20} />
-                    </a>
-                  </Tooltip>
-                  <Tooltip content="Download Resume">
-                    <a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-white hover:text-white/70 transition-colors p-1" aria-label="Download Resume">
-                      <Image
-                        src="/assets/images/pdf-icon.png"
-                        alt="PDF"
-                        width={20}
-                        height={20}
-                        className="w-5 h-5 invert brightness-0" // Invert for white icon on dark background
-                      />
-                    </a>
-                  </Tooltip>
-                </div>
-
                 <div className="flex flex-wrap gap-3 pt-1">
                   <a
                     href="https://github.com/colbywest5"
@@ -1371,11 +1508,21 @@ export default function Home() {
                     <LinkedInMark size={16} />
                     LinkedIn
                   </a>
+                  <a
+                    href="/assets/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs sm:text-sm font-semibold text-white/90 hover:bg-white/10 hover:border-white/25 transition-colors"
+                    aria-label="Download Resume"
+                  >
+                    <DownloadMark size={20} />
+                    Resume
+                  </a>
                 </div>
+              </div>
 
-                <div className="text-xs text-white/60">
-                  Links for quick context.
-                </div>
+              <div className="text-xs text-white/60 mt-4">
+                Links for quick context.
               </div>
             </div>
             <div className="col-span-12 md:col-span-7 relative">
@@ -1489,36 +1636,38 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </div >
+      </section >
 
       {/* Mobile Preview Overlay */}
-      {!isInIframe && viewportType === 'mobile' && mobilePreviewUrl && (
-        <div className="fixed inset-0 z-[70] bg-black/40 backdrop-blur-[2px]">
-          <div className="absolute inset-0 flex items-center justify-center p-4">
-            <div className="w-[390px] max-w-[92vw] h-[844px] max-h-[92vh] rounded-[28px] bg-white shadow-[0_40px_140px_rgba(0,0,0,0.45)] overflow-hidden border border-white/20">
-              <div className="h-10 bg-[#0f1419] text-white/80 flex items-center justify-between px-4 text-xs">
-                <div className="flex items-center gap-2">
-                  <Smartphone size={14} />
-                  <span className="font-semibold tracking-wide">Mobile Preview</span>
+      {
+        !isInIframe && viewportType === 'mobile' && mobilePreviewUrl && (
+          <div className="fixed inset-0 z-[70] bg-black/40 backdrop-blur-[2px]">
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <div className="w-[390px] max-w-[92vw] h-[844px] max-h-[92vh] rounded-[28px] bg-white shadow-[0_40px_140px_rgba(0,0,0,0.45)] overflow-hidden border border-white/20">
+                <div className="h-10 bg-[#0f1419] text-white/80 flex items-center justify-between px-4 text-xs">
+                  <div className="flex items-center gap-2">
+                    <Smartphone size={14} />
+                    <span className="font-semibold tracking-wide">Mobile Preview</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setViewportType('desktop')}
+                    className="px-2 py-1 rounded-md bg-white/10 hover:bg-white/15 transition-colors"
+                  >
+                    Exit
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setViewportType('desktop')}
-                  className="px-2 py-1 rounded-md bg-white/10 hover:bg-white/15 transition-colors"
-                >
-                  Exit
-                </button>
+                <iframe
+                  title="Mobile preview"
+                  src={mobilePreviewUrl}
+                  className="w-full h-[calc(100%-40px)] bg-white"
+                />
               </div>
-              <iframe
-                title="Mobile preview"
-                src={mobilePreviewUrl}
-                className="w-full h-[calc(100%-40px)] bg-white"
-              />
             </div>
           </div>
-        </div>
-      )}
+        )
+      }
 
       {/* Footer */}
       <footer className="bg-[#FAFAFA]/95 backdrop-blur-sm border-t border-[#9DB2BF]/30 font-mono">
@@ -1564,19 +1713,13 @@ export default function Home() {
                   className="text-[#26374D] hover:text-[#536D82] transition-colors"
                   aria-label="Download Resume"
                 >
-                  <Image
-                    src="/assets/images/pdf-icon.png"
-                    alt="PDF"
-                    width={18}
-                    height={18}
-                    className="w-4 h-4 sm:w-[18px] sm:h-[18px]"
-                  />
+                  <DownloadMark size={22} />
                 </a>
               </Tooltip>
             </div>
           </div>
         </div>
       </footer>
-    </main>
+    </main >
   );
 }

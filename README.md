@@ -1,6 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Colby West - Developer Portfolio
 
-## Getting Started
+> **Network Engineering meets Web Development.**
+>
+> A high-performance portfolio site built with [Next.js 14+](https://nextjs.org), designed to bridge the gap between reliable infrastructure and modern, fluid user experiences.
+
+![Hero Preview](public/assets/images/logo.png)
+
+## ⚡ Key Features
+
+*   **Interactive Hero Section**: A custom-engineered halftone gradient background with subtle animations and "glitch" text effects that respect user motion preferences.
+*   **Tic-Tac-Toe Engine**: A fully playable game embedded directly in the hero.
+    *   **Minimax AI**: An unbeatable AI opponent implementation.
+    *   **Global Stats**: Persistent win/loss/draw tracking across all visitors via a custom API limit-locked backend.
+    *   **Responsive Layout**: Grid-based UI that prevents layout shifts during state changes.
+*   **Fluid Project Gallery**: `framer-motion` backed shared layout animations for seamless card expansion and image viewing.
+*   **Performance First**: Eager loading for critical assets, font optimization with `next/font`, and backdrop-filter optimizations.
+*   **Secure Contact**: Integrated Turnstile protection and server-side validation.
+
+## 🛠️ Technology Stack
+
+*   **Framework**: [Next.js](https://nextjs.org) (App Router, Server Components)
+*   **Language**: TypeScript
+*   **Styling**: Tailwind CSS
+*   **Animation**: Framer Motion
+*   **Icons**: Lucide React
+*   **Deployment**: Vercel ready
+
+## 🚀 Getting Started
 
 First, run the development server:
 
@@ -10,27 +36,22 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📂 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+*   `src/app/page.tsx`: The core logic, handling the single-page scroll layout, game state, and modal interactions.
+*   `src/app/api/`: Serverless functions for contact form handling and game stats persistence.
+*   `public/assets/`: Static assets including optimized project screenshots and resume.
 
-## Learn More
+## 🎨 Design Philosophy
 
-To learn more about Next.js, take a look at the following resources:
+"Clear communication and thoughtful execution come standard."
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The design mirrors my professional approach: reliable, structured, but capable of handling complex dynamism without breaking. The color palette is a strict selection of Slate (`#26374D`, `#536D82`) and bright accents (`#fbbf24`, `#22d3ee`) ensures high contrast and accessibility while maintaining a polished "Dark Mode" aesthetic in key sections.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2024 Colby West. All rights reserved.
