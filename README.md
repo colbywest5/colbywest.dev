@@ -4,7 +4,7 @@
 >
 > A high-performance portfolio site built with [Next.js 14+](https://nextjs.org), designed to bridge the gap between reliable infrastructure and modern, fluid user experiences.
 
-![Hero Preview](public/assets/images/logo.png)
+![Hero Preview](public/assets/images/logo-white.png)
 
 ## ⚡ Key Features
 
