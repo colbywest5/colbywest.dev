@@ -546,6 +546,15 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Check for mobile device to disable heavy layout transitions
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Update fixed elements padding when scroll is locked
   useEffect(() => {
     if (!workModalLock) {
@@ -975,8 +984,8 @@ export default function Home() {
                   transition={{ delay: idx * 0.05, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <motion.div
-                    layoutId={`work-card-${idx}`}
-                    layout
+                    {...(!isMobile ? { layoutId: `work-card-${idx}` } : {})}
+                    {...(!isMobile ? { layout: true } : {})}
                     transition={{ type: 'spring', stiffness: 220, damping: 25, mass: 1 }}
                     className="group bg-white border border-[#9DB2BF]/30 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow"
                     role="button"
@@ -1033,7 +1042,7 @@ export default function Home() {
                   <div className="relative z-10 w-full h-full overflow-auto">
                     <div className="min-h-full flex items-start justify-center px-4 sm:px-6 md:px-8 py-10 md:py-16">
                       <motion.div
-                        layoutId={`work-card-${expandedCard}`}
+                        {...(!isMobile ? { layoutId: `work-card-${expandedCard}` } : {})}
                         transition={{ type: 'spring', stiffness: 220, damping: 25, mass: 1 }}
                         className="w-full max-w-6xl bg-white border border-[#9DB2BF]/30 rounded-2xl overflow-hidden shadow-[0_40px_120px_rgba(0,0,0,0.35)]"
                         onClick={(e) => e.stopPropagation()}
