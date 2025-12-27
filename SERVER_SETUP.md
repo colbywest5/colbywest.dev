@@ -13,9 +13,10 @@ sudo apt-get update && sudo apt-get install -y git
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 
-# (Optional) Run Docker without sudo
-# You might need to log out and log back in after this
+# 2. Configure Permissions (Critical)
+# This allows you to run Docker commands without sudo (required for the deploy script).
 sudo usermod -aG docker $USER
+# You MUST log out and log back in for this to take effect!
 ```
 
 ## 2. Clone the Repository
