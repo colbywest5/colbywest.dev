@@ -8,9 +8,9 @@ const RATE_LIMIT = 30;
 const TIME_WINDOW = 60 * 1000;
 
 // Path to the data file. 
-// In a real production environment (Vercel, etc.), writing to the filesystem at runtime 
-// is often ephemeral or not allowed. However, for a local/VPS setup or persistent volume, this works.
-const DATA_DIR = path.join(process.cwd(), 'data');
+// Uses absolute path /app/data to ensure it hits the Docker volume mount correctly, 
+// bypassing potential process.cwd() confusion in standalone builds.
+const DATA_DIR = process.env.NODE_ENV === 'production' ? '/app/data' : path.join(process.cwd(), 'data');
 const DATA_FILE = path.join(DATA_DIR, 'tictactoe-stats.json');
 
 // Ensure data directory exists
