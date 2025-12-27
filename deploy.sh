@@ -10,7 +10,7 @@ echo "📁 Setting up data persistence..."
 mkdir -p data
 # Ensure container (UID 1001) can write to it. 
 # Using 777 is the simplest robust fix for Docker bind mounts without complex UID mapping.
-chmod 777 data
+chmod -R 777 data
 
 # Rebuild and restart containers
 echo "🔄 Rebuilding containers..."
