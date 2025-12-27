@@ -10,3 +10,5 @@ services:
     volumes:
       # Persist TTT stats if they are written to a local file in /app/data
       - ./data:/app/data
+    env_file:
+      - .env.local
