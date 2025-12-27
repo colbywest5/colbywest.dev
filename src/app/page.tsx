@@ -872,7 +872,7 @@ export default function Home() {
                 </a>
               </Tooltip>
               <Tooltip content="Download Resume" placement="bottom">
-                <a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-[#26374D] hover:text-[#536D82] transition-colors p-1" aria-label="Download Resume">
+                <a href="/api/resume" target="_blank" rel="noopener noreferrer" className="text-[#26374D] hover:text-[#536D82] transition-colors p-1" aria-label="Download Resume">
                   <DownloadMark size={22} />
                 </a>
               </Tooltip>
@@ -1518,7 +1518,7 @@ export default function Home() {
                     LinkedIn
                   </a>
                   <a
-                    href="/assets/resume.pdf"
+                    href="/api/resume"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs sm:text-sm font-semibold text-white/90 hover:bg-white/10 hover:border-white/25 transition-colors"
@@ -1716,7 +1716,7 @@ export default function Home() {
               </Tooltip>
               <Tooltip content="Download Resume">
                 <a
-                  href="/assets/resume.pdf"
+                  href="/api/resume"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#26374D] hover:text-[#536D82] transition-colors"
