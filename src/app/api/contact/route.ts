@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mojakpbz';
 const TURNSTILE_VERIFY = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
@@ -23,6 +23,12 @@ export async function POST(req: Request) {
   if (!fullname || !email || !message) {
     return NextResponse.json({ ok: false, error: 'Missing required fields.' }, { status: 400 });
   }
+
+  // Security: Enforce length limits to prevent payload attacks
+  if (fullname.length > 100) return NextResponse.json({ ok: false, error: 'Name too long.' }, { status: 400 });
+  if (email.length > 100) return NextResponse.json({ ok: false, error: 'Email too long.' }, { status: 400 });
+  if (message.length > 5000) return NextResponse.json({ ok: false, error: 'Message too long.' }, { status: 400 });
+
   if (!turnstileToken) {
     return NextResponse.json({ ok: false, error: 'Captcha required.' }, { status: 400 });
   }

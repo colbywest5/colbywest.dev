@@ -1,6 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+
+// Rate Limiter: 30 games per minute per IP
+const rateLimitMap = new Map<string, { count: number; startTime: number }>();
+const RATE_LIMIT = 30;
+const TIME_WINDOW = 60 * 1000;
 
 // Path to the data file. 
 // In a real production environment (Vercel, etc.), writing to the filesystem at runtime 
@@ -47,7 +52,25 @@ export async function GET() {
     return NextResponse.json(stats);
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+    // Security: Rate Limiting
+    const ip = request.headers.get('x-forwarded-for') || 'unknown';
+    const now = Date.now();
+    const record = rateLimitMap.get(ip);
+
+    if (record) {
+        if (now - record.startTime < TIME_WINDOW) {
+            if (record.count >= RATE_LIMIT) {
+                return NextResponse.json({ error: 'Too many games played. Take a break!' }, { status: 429 });
+            }
+            record.count++;
+        } else {
+            rateLimitMap.set(ip, { count: 1, startTime: now });
+        }
+    } else {
+        rateLimitMap.set(ip, { count: 1, startTime: now });
+    }
+
     try {
         const body = await request.json();
         const { winner } = body; // 'X' | 'O' | 'draw'

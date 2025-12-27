@@ -12,7 +12,7 @@ const TIME_WINDOW = 60 * 60 * 1000; // 1 hour in millseconds
 export async function GET(request: NextRequest) {
     // 1. Get IP address
     // In generic Node/Next, req.ip works. In Docker/Proxy, might need 'x-forwarded-for'.
-    const ip = request.headers.get('x-forwarded-for') || request.ip || 'unknown';
+    const ip = request.headers.get('x-forwarded-for') || 'unknown';
 
     // 2. Check Rate Limit
     const now = Date.now();
