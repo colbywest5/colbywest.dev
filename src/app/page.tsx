@@ -502,19 +502,29 @@ const TicTacToe = () => {
 
               {/* Global Toggle - Chip Style */}
               <div className="mt-2.5 flex justify-center w-full">
-                <button
+                <motion.button
+                  layout
                   onClick={() => setShowGlobal(!showGlobal)}
-                  className="inline-flex items-center justify-center gap-1.5 px-2 py-1 rounded border border-white/10 bg-white/5 text-[9px] text-white/70 hover:bg-white/10 hover:text-white transition-colors uppercase tracking-wider group"
+                  className="inline-flex items-center justify-center rounded border border-white/10 bg-white/5 px-2 py-1 text-[9px] text-white/70 transition-colors hover:bg-white/10 hover:text-white group uppercase tracking-wider relative overflow-hidden"
                 >
-                  {/* Text: "Session Stats" vs "Global Stats" */}
-                  {showGlobal ? 'Global Stats' : 'Session Stats'}
+                  <motion.span layout className="relative z-10">
+                    {showGlobal ? 'Global Stats' : 'Session Stats'}
+                  </motion.span>
 
-                  {/* Icon: Always use Global Icon, colored if active */}
-                  <IconGlobal
-                    size={12}
-                    className={`transition-all ${showGlobal ? 'text-amber-300 opacity-100' : 'text-white opacity-40 group-hover:opacity-80'}`}
-                  />
-                </button>
+                  <AnimatePresence mode='popLayout'>
+                    {showGlobal && (
+                      <motion.span
+                        initial={{ x: -20, opacity: 0, width: 0 }}
+                        animate={{ x: 0, opacity: 1, width: 'auto' }}
+                        exit={{ x: -10, opacity: 0, width: 0 }}
+                        transition={{ type: 'spring', stiffness: 500, damping: 30, mass: 0.8 }}
+                        className="flex items-center justify-center pl-1.5"
+                      >
+                        <IconGlobal size={12} className="text-amber-300 shrink-0" />
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
               </div>
             </div>
           </div>
